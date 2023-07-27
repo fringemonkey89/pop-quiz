@@ -39,3 +39,14 @@ const questions = [{
 ]
 }
 ]
+
+let currentQuestion = 0;
+let score = 0;
+
+function loadQuestion (){
+    const question = document.getElementById("ques")
+    const option = document.getElementById("opt")
+
+    question.textContent = questions[currentQuestion].q;
+    console.log(question.)
+}
