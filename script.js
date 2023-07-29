@@ -48,5 +48,46 @@ function loadQuestion (){
     const option = document.getElementById("opt")
 
     question.textContent = questions[currentQuestion].q;
-    console.log(question.)
+
+    option.innerHTML = " ";
+
+    for(let i = 0; questions[currentQuestion].a.length; i++){
+        const choicesContainer = document.createElement("div");
+        const choice = document.createElement("input");
+        const choicesLabel = document.createElement("label");
+        
+        choice.type = "radio";
+        choice.name = "answer";
+        choice.value = i;
+ 
+        choicesLabel.textContent = Questions[currQuestion].a[i].text;
+        choicesContainer.appendChild(choice);
+        choicesContainer.appendChild(choicesLabel);
+        option.appendChild(choicesdiv);
+    } 
+    }
+
+
+function nextQuestion(){
+    if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        loadQues();
+    } else {
+        document.getElementById("opt").remove()
+        document.getElementById("ques").remove()
+        document.getElementById("btn").remove()
+        loadScore();
+    }
+}
+
+function checkAnswer() {
+    const selectedAns = parseInt(document.querySelector('input[name="answer"]:checked').value);
+ 
+    if (Questions[currQuestion].a[selectedAns].isCorrect) {
+        score++;
+        console.log("Correct")
+        nextQuestion();
+    } else {
+        nextQuestion();
+    }
 }
