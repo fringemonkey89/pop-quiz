@@ -3,15 +3,16 @@ var timeElem = document.getElementById('time-div');
 var timerId = setInterval(countdown, 1000);
 
 function countdown() {
-    if (timeLeft == -1) {
+    if (timeLeft === -1) {
         clearTimeout(timerId);
+        loadScore();
+        const Question = document.getElementById("ques").style.display = "none";
+        const option = document.getElementById("opt").style.display = "none";
     } else {
         timeElem.innerHTML = timeLeft + ' seconds remaining';
         timeLeft--;
     }
 }
-
-
 
 const questions = [{
     q: "What does HTML stand for?",
@@ -86,17 +87,21 @@ function nextQuestion(){
         document.getElementById("opt").remove()
         document.getElementById("ques").remove()
         document.getElementById("btn").remove()
+        clearTimeout(timerId);
         loadScore();
     }
 }
 
-console.log(selectedAnswer)
 function checkAnswer() {
     const selectedAnswer = parseInt(document.querySelector('input[name="answer"]:checked').value);
+    const resOutcome = document.getElementById("outcome");
+
     if (questions[currentQuestion].a[selectedAnswer].isCorrect) {
+        resOutcome.textContent = "correct answer";
         score++;
-        nextQuestion();
+       nextQuestion();
     } else {
+        resOutcome.textContent = "incorrect answer";  
         nextQuestion();
     }
 }
@@ -106,10 +111,4 @@ function loadScore() {
     totalScore.textContent = "You scored " + score + " out of "  + questions.length;
 }
 
-if(questions[currentQuestion] == questions.length && timeLeft > 0 ){
-    const totalScore = document.getElementById("your-score")
-    totalScore.textContent = "You scored " + score + " out of "  + questions.length + " in " + timeLeft + "seconds"; 
-} else {
-    const totalScore = document.getElementById("your-score")
-    totalScore.textContent = "You scored " + score + " out of "  + questions.length + " in 30seconds"
-}
+
