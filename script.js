@@ -1,6 +1,8 @@
 var timeLeft = 30;
-var timeElem = document.getElementById('time-div');
+var timeElem = document.getElementById('time_div');
 var timerId = setInterval(countdown, 1000);
+
+ 
 
 function countdown() {
     if (timeLeft === -1) {
@@ -8,6 +10,10 @@ function countdown() {
         loadScore();
         const Question = document.getElementById("ques").style.display = "none";
         const option = document.getElementById("opt").style.display = "none";
+        const button = document.getElementById("btn").style.display = "none";
+
+        const intials = document.getElementById("initialInput").style.display = "block";
+        const subScore = document.getElementById("submitScore").style.display = "block";
     } else {
         timeElem.innerHTML = timeLeft + ' seconds remaining';
         timeLeft--;
@@ -54,6 +60,23 @@ let score = 0;
 const button = document.getElementById("btn");
 button.addEventListener("click", checkAnswer);
 
+const subScore = document.getElementById("submitScore")
+subScore.addEventListener("click", submitInitial);
+
+function submitInitial (){
+    var nameInitials = document.getElementById('initialInput');
+    var userScore = score;
+    var userInfo = {
+    userInitial: nameInitials.value.trim(),
+    userfinalScore: userScore
+    };
+
+    localStorage.setItem('user', JSON.stringify(userInfo));
+    
+   document.getElementById('record').textContent = localStorage.getItem('userInitial');
+   
+}
+
 function loadQuestion (){
     const Question = document.getElementById("ques")
     const option = document.getElementById("opt")
@@ -89,6 +112,8 @@ function nextQuestion(){
         document.getElementById("btn").remove()
         clearTimeout(timerId);
         loadScore();
+        const intials = document.getElementById("initialInput").style.display = "block";
+        const subScore = document.getElementById("submitScore").style.display = "block";
     }
 }
 
@@ -105,10 +130,8 @@ function checkAnswer() {
         nextQuestion();
     }
 }
-
 function loadScore() {
-    const totalScore = document.getElementById("your-score")
+    const totalScore = document.getElementById("your_score")
     totalScore.textContent = "You scored " + score + " out of "  + questions.length;
 }
-
 

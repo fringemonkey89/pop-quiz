@@ -1,6 +1,14 @@
+body{
+    display: flex;
+    flex-direction: column;
+}
 
-.question-panel{
-    margin-top: 8%;
+h1{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+.question_panel{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,10 +20,12 @@
     font-size: 30px;
     margin-bottom: 20px;
 }
-#time-div{
+#time_div{
     width: 100px;
     height: 50px;
     background-color: #4f98c2;
+    margin-left: auto;
+    margin-right: auto;
 }
 .options{
     font-size: 20px;
@@ -28,7 +38,6 @@
 }
 
 button {
-    margin-right: 75px;
     margin-top: 8%;
     font-size: 20px;
     padding: 10px 20px;
@@ -36,10 +45,14 @@ button {
     color: white;
     border: none;
     cursor: pointer;
+    display: block;
 }
 
-#your-score {
+#your_score {
     font-size: 30px;
     color: darkslategray;
 }
 
+.initial_input, .submit_score{
+    display: none;
+}
