@@ -23,8 +23,8 @@ to the beginning.
     
 ## Screenshot
 
-![](./password-screenshot.png)
-
+![](./screenshot1.png)
+![](./screenshot2.png)
 ## Installation
    N/A
 
