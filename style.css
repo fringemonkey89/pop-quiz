@@ -1,16 +1,36 @@
+/* styles the body element */
 body{
+    box-sizing: border-box;
+    /*sets the body element as a flex container and the flex direction*/
     display: flex;
     flex-direction: column;
+    /*makes the background color changed from blue to grey from top to bottom*/
     background-image: linear-gradient(blue, grey);
     height: 100vh;
 }
 
+/* styles the element that displays the countdown timer*/
+#time_div{
+    width: 100px;
+    height: 50px;
+    background-color: grey;
+    /* centers the element */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: white;
+}
+
+/* these rules set the font color and position for the h1 element for the quiz */
 h1{
     color: white;
     width: fit-content;
+    /*centers the h1 element */
     margin-left: auto;
     margin-right: auto;
 }
+
+/* ----------------------this where the elements for the container, questions and answers are styled--------------*/
 .question_panel{
     display: flex;
     flex-direction: column;
@@ -18,36 +38,36 @@ h1{
     justify-content: center;
     color: navy;
     width: fit-content;
+    /*centers the h1 element */
     margin-left: auto;
     margin-right: auto;
 }
 
+/* this styles the question elements font */
 .question{
     color: white;
     font-size: 30px;
     margin-bottom: 20px;
 }
-#time_div{
-    width: 100px;
-    height: 50px;
-    background-color: grey;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    color: white;
-}
+
+/* this styles the answer elements font and display type */
 .options{
     color: white;
     font-size: 20px;
     display: block;
     margin-top: 10px;
     margin-bottom: 20px;
-    top: 40%;
-    left: 40%;
+
 }
+
+/* ---------here is where the quiz buttons are styled ------------------- */
+
+/* this removes the replay quiz button from sight */
 #ReplayQuiz{
     display: none;
 }
+
+/* here are the style rules for the button element*/
 button {
     margin-top: 25px;
     font-size: 20px;
@@ -58,15 +78,17 @@ button {
     border: none;
     cursor: pointer;
     display: block;
+    /*centering the button element*/
     margin-left: auto;
     margin-right: auto;
 }
 
+/* the input and submitscore are not displayed*/
+.initial_input, .submit_score{
+    display: none;
+}
+/* styling the score display font size and color*/
 #your_score {
     font-size: 30px;
     color: white;
-}
-
-.initial_input, .submit_score{
-    display: none;
 }

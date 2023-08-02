@@ -76,20 +76,28 @@ function countdown() {
     }
 }
 
+//this function submits the initials and score then stores it locally 
 function submitInitial (){
+    //the restart button appears 
     restart.style.display = 'block';
     restart.textContent = 'Play Again?';
+    //the variable that holds the initial
     var nameInitials = document.getElementById('initialInput');
+    //the variable holds the user score
     var userScore = score;
     var userInfo = {
     userInitial: nameInitials.value.trim(),
     userfinalScore: userScore
     };
+    //clears the initials from the input
     nameInitials.textContent = '';
     localStorage.setItem('user', JSON.stringify(userInitial));
     document.getElementById('record').textContent = localStorage.getItem('');
     
 }
+
+//this loads a window with an alert display before the quiz loads that tells the user how long they have to finish and the penalty for selecting the wrong answer
+
 window.onload = function(){
     window.alert("The quiz is about to start hot-shot and you have 30 seconds or less to complete it. A word to the wise, if you choose the wrong answer, you will have 5 seconds subtracted from the timer")
 }
