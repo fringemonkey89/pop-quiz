@@ -1,9 +1,12 @@
 body{
     display: flex;
     flex-direction: column;
+    background-image: linear-gradient(blue, grey);
+    height: 100vh;
 }
 
 h1{
+    color: white;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
@@ -14,20 +17,27 @@ h1{
     align-items: center;
     justify-content: center;
     color: navy;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .question{
+    color: white;
     font-size: 30px;
     margin-bottom: 20px;
 }
 #time_div{
     width: 100px;
     height: 50px;
-    background-color: #4f98c2;
+    background-color: grey;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
+    color: white;
 }
 .options{
+    color: white;
     font-size: 20px;
     display: block;
     margin-top: 10px;
@@ -42,16 +52,19 @@ button {
     margin-top: 25px;
     font-size: 20px;
     padding: 10px 20px;
-    background-color: #4f98c2;
+    width: fit-content;
+    background-color: grey;
     color: white;
     border: none;
     cursor: pointer;
     display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #your_score {
     font-size: 30px;
-    color: darkslategray;
+    color: white;
 }
 
 .initial_input, .submit_score{

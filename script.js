@@ -1,25 +1,26 @@
+//variables for the quiz timer
 var timeLeft = 30;
 var timeElem = document.getElementById('time_div');
 var timerId = setInterval(countdown, 1000);
 
- 
+//the currentQuestion and score are set to zero where they will store the points and question index
+let currentQuestion = 0;
+let score = 0;
 
-function countdown() {
-    if (timeLeft === -1) {
-        clearTimeout(timerId);
-        loadScore();
-        const Question = document.getElementById("ques").style.display = "none";
-        const option = document.getElementById("opt").style.display = "none";
-        const button = document.getElementById("btn").style.display = "none";
+//this where the submit answer button's event listener is added 
+const button = document.getElementById("btn");
+button.addEventListener("click", checkAnswer);
 
-        const intials = document.getElementById("initialInput").style.display = "block";
-        const subScore = document.getElementById("submitScore").style.display = "block";
-    } else {
-        timeElem.innerHTML = timeLeft + ' seconds remaining';
-        timeLeft--;
-    }
-}
+//this is where the submit initials button event listener is attached
+const subScore = document.getElementById("submitScore")
+subScore.addEventListener("click", submitInitial);
+subScore.textContent = "Submit Initials";
 
+//this is where the replay quiz button event listener is attached
+const restart = document.getElementById('ReplayQuiz');
+restart.addEventListener('click', resetQuiz);
+
+//this is the array where all the questions and answers are stored
 const questions = [{
     q: "What does HTML stand for?",
     a: [{text:"Hyper Text Mark-up Language", isCorrect:true},
@@ -53,20 +54,28 @@ const questions = [{
 ]
 }
 ]
+ 
+//the countdown function 
+function countdown() {
+    //if the timeLeft reaches zero, the score is loaded, the timer stops 
+    if (timeLeft === -1) {
+        clearTimeout(timerId);
+        loadScore();
+        //the question, answer and submit button display is set to none because no more questions need to be answered
+        const Question = document.getElementById("ques").style.display = "none";
+        const option = document.getElementById("opt").style.display = "none";
+        const button = document.getElementById("btn").style.display = "none";
+        //the initial element appears to take the users input
+        const intials = document.getElementById("initialInput").style.display = "block";
+        //the submit initial button display is set to block
+        const subScore = document.getElementById("submitScore").style.display = "block";
+    } else {
+        //if the timer has more than 0 seconds left, it will continue to count down
+        timeElem.innerHTML = timeLeft + ' seconds remaining';
+        timeLeft--;
+    }
+}
 
-let currentQuestion = 0;
-let score = 0;
-
-
-const button = document.getElementById("btn");
-button.addEventListener("click", checkAnswer);
-
-const subScore = document.getElementById("submitScore")
-subScore.addEventListener("click", submitInitial);
-subScore.textContent = "Submit Initials";
-
-const restart = document.getElementById('ReplayQuiz');
-restart.addEventListener('click', resetQuiz);
 function submitInitial (){
     restart.style.display = 'block';
     restart.textContent = 'Play Again?';
@@ -82,8 +91,10 @@ function submitInitial (){
     
 }
 window.onload = function(){
-    window.alert("The quiz is about to start hot-shot and you have 30 seconds or less to complete it")
+    window.alert("The quiz is about to start hot-shot and you have 30 seconds or less to complete it. A word to the wise, if you choose the wrong answer, you will have 5 seconds subtracted from the timer")
 }
+
+//this is the function that generates the questions and answers for the quiz
 function loadQuestion (){
     const Question = document.getElementById("ques");
     const option = document.getElementById("opt");
@@ -91,18 +102,17 @@ function loadQuestion (){
     Question.textContent = questions[currentQuestion].q;
 
     option.innerHTML = " ";
-
+//this loops through the question array and creates the elements that displays the quiz question and answers
     for(let i = 0; questions[currentQuestion].a.length; i++){
         const choicesContainer = document.createElement("div");
         const choice = document.createElement("input");
         const choicesLabel = document.createElement("label");
-        
+        //this sets the input type to radio, the name to answer and value to i
         choice.type = "radio";
         choice.name = "answer";
         choice.value = i;
-        
+        //this creates the elements for all the choices a user will pick for the answer
         choicesLabel.textContent = questions[currentQuestion].a[i].text;
-       console.log(choicesLabel.textContent = questions[currentQuestion].a[i].text)
         choicesContainer.appendChild(choice);
         choicesContainer.appendChild(choicesLabel);
         option.appendChild(choicesContainer);
@@ -110,6 +120,7 @@ function loadQuestion (){
     }
     loadQuestion();
 
+//this function loads the next question in the quiz
 function nextQuestion(){
     if (currentQuestion < questions.length - 1) {
         currentQuestion++;
@@ -125,37 +136,49 @@ function nextQuestion(){
         const subScore = document.getElementById("submitScore").style.display = "block";
     }
 }
-
+// checks the answer selected if its correct or not and then displays a "correct" or "incorrect" text
+// once the answer is evaluated, the next question is loaded by the nextQuestion function
 function checkAnswer() {
     const selectedAnswer = parseInt(document.querySelector('input[name="answer"]:checked').value);
     const resOutcome = document.getElementById("outcome");
     
     if (questions[currentQuestion].a[selectedAnswer].isCorrect) {
+        //this changes the text color depending if its correct
+        resOutcome.style.color = "limegreen";
         resOutcome.textContent = "correct answer";
         score++;
        nextQuestion();
     } else{
+        //this changes the text color depending if its incorrect
+        resOutcome.style.color = "red";
         resOutcome.textContent = "incorrect answer"; 
+        //if the user selects the incorrect answer then 5 seconds is subtracted from the timer
         timeLeft -= 5;
         timeElem.innerHTML = timeLeft + ' seconds remaining';
         nextQuestion();
     }
 }
+
+//the final score is displayed
 function loadScore() {
     const totalScore = document.getElementById("your_score")
     totalScore.textContent = "You scored " + score + " out of "  + questions.length;
 }
 
+//the reset function sets the timer back to 30 seconds, the current question number to zero and the score to zero
 function resetQuiz(){
     timeLeft = 30;
     currentQuestion = 0;
     score = 0;
+    //the question, answer and submit answer button are set to block again
     document.getElementById("opt").style.display = "block";
     document.getElementById("ques").style.display = "block";
     document.getElementById("btn").style.display = "block";
     const resOutcome = document.getElementById("outcome");
     resOutcome.textContent = "";
+    //the input element for initials is removed from sight
     var nameInitials = document.getElementById('initialInput').style.display = 'none';
+    //the restart button is removed from sight
     restart.style.display = 'none';
     subScore.style.display = 'none';
     hideScore();
