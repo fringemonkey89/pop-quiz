@@ -32,13 +32,14 @@ h1{
     display: block;
     margin-top: 10px;
     margin-bottom: 20px;
-    position: fixed;
     top: 40%;
     left: 40%;
 }
-
+#ReplayQuiz{
+    display: none;
+}
 button {
-    margin-top: 8%;
+    margin-top: 25px;
     font-size: 20px;
     padding: 10px 20px;
     background-color: #4f98c2;
