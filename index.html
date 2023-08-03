@@ -9,6 +9,7 @@
 <body>
     <!-- where the timer and user highscores are displayed -->
     <div id ="time_div"></div>
+    <h3>User Score</h3>
     <div id="record"></div>
     <!--the header for the quiz -->
     <h1>Pop Quiz Hot-Shot</h1>
@@ -21,7 +22,7 @@
         <input class= "initial_input" id ="initialInput">
         <button class="submit_score" id="submitScore"></button>
         <!-- replay button -->
-        <button class="replay_quiz" id="ReplayQuiz"></button>
+        <button class="replay_quiz" id="ReplayQuiz" onClick="window.location.reload()"></button>
         <!-- this is where the user score out of four questions are displayed-->
         <div id="your_score"></div>
         <!-- this is where correct and incorrect ar displayed -->

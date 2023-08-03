@@ -18,7 +18,6 @@ subScore.textContent = "Submit Initials";
 
 //this is where the replay quiz button event listener is attached
 const restart = document.getElementById('ReplayQuiz');
-restart.addEventListener('click', resetQuiz);
 
 //this is the array where all the questions and answers are stored
 const questions = [{
@@ -82,17 +81,12 @@ function submitInitial (){
     restart.style.display = 'block';
     restart.textContent = 'Play Again?';
     //the variable that holds the initial
-    var nameInitials = document.getElementById('initialInput');
-    //the variable holds the user score
-    var userScore = score;
-    var userInfo = {
-    userInitial: nameInitials.value.trim(),
-    userfinalScore: userScore
-    };
+    var nameInitials = document.getElementById('initialInput').value;
+
     //clears the initials from the input
-    nameInitials.textContent = '';
-    localStorage.setItem('user', JSON.stringify(userInitial));
-    document.getElementById('record').textContent = localStorage.getItem('');
+    localStorage.setItem('score', JSON.stringify(score))
+    localStorage.setItem('user', JSON.stringify(nameInitials));
+    document.getElementById('record').textContent = "User: " + localStorage.getItem('user') + " Score: " + localStorage.getItem('score') + "/4";
     
 }
 
@@ -173,28 +167,3 @@ function loadScore() {
     totalScore.textContent = "You scored " + score + " out of "  + questions.length;
 }
 
-//the reset function sets the timer back to 30 seconds, the current question number to zero and the score to zero
-function resetQuiz(){
-    timeLeft = 30;
-    currentQuestion = 0;
-    score = 0;
-    //the question, answer and submit answer button are set to block again
-    document.getElementById("opt").style.display = "block";
-    document.getElementById("ques").style.display = "block";
-    document.getElementById("btn").style.display = "block";
-    const resOutcome = document.getElementById("outcome");
-    resOutcome.textContent = "";
-    //the input element for initials is removed from sight
-    var nameInitials = document.getElementById('initialInput').style.display = 'none';
-    //the restart button is removed from sight
-    restart.style.display = 'none';
-    subScore.style.display = 'none';
-    hideScore();
-}
-
-function hideScore(){
-    score = 0;
-    const totalScore = document.getElementById("your_score");
-    totalScore.textContent = "";
-
-}
