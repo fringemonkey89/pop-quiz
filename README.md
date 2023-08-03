@@ -33,7 +33,7 @@ to the beginning.
 
 ## Website Link
 
-https://fringemonkey89.github.io/My-Portfolio/
+https://fringemonkey89.github.io/pop-quiz/
 
 ## License
  MIT License
