@@ -17,7 +17,7 @@ to the beginning.
    time expiring, you will see an input with a submit initial button below it
  - You'll enter your initials, click on the sibmit intials button and your name and
    score will be displayed
-   - The replay quiz button will appear and you will have the option of starting the
+ - The replay quiz button will appear and you will have the option of starting the
      quiz all over again
        
     
